@@ -107,6 +107,29 @@ def get_ages(base_dados_pessoas):
     
     menor_idade = min(idades)
     maior_idade = max(idades)
-    media_idade = sum(idades)/len(idades)   
+    media_idade = int(sum(idades)/len(idades))  
     
     return (menor_idade, maior_idade, media_idade)
+
+def get_hobbies(base_dados_pessoas):
+    """get_hobbies
+    
+
+    Parameters
+    ----------
+    base_dados_pessoas : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    None.
+
+    """ 
+    hobbies_conjunto = {}
+    
+    for pessoa in base_dados_pessoas:
+        for chave in pessoa.keys():
+            if chave == "hobbies":
+                hobbies_conjunto.append(pessoa["hobbies"])
+                
+    return hobbies_conjunto
