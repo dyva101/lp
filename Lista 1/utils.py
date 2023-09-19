@@ -10,6 +10,7 @@ the set:
     2. Exception Treatment
     3. Temporary variables in loops
     4. List Comprehension
+    5. Set and manipulation of sets
 
 """
 
@@ -125,11 +126,68 @@ def get_hobbies(base_dados_pessoas):
     None.
 
     """ 
-    hobbies_conjunto = {}
+    hobbies_conjunto = set()
     
     for pessoa in base_dados_pessoas:
         for chave in pessoa.keys():
             if chave == "hobbies":
-                hobbies_conjunto.append(pessoa["hobbies"])
+                hobbies_conjunto.update(pessoa["hobbies"])
                 
     return hobbies_conjunto
+
+
+def get_people_by_hobbies(base_dados_pessoas, hobbies_list):
+    """get_people_by_hobbies
+    
+
+    Parameters
+    ----------
+    base_dados_pessoas : list
+    hobbies_list: list
+
+    Returns
+    -------
+    people_list: list
+
+    """ 
+    people_list = list()
+    
+    for pessoa in base_dados_pessoas:
+        for hobby in hobbies_list: 
+            for x in pessoa["hobbies"]:
+                if hobby == x:  
+                    people_list.append(pessoa["name"])
+
+                
+    return people_list  
+
+def tinder(base_dados_pessoas, name=None, min_age=None, max_age=None, city=None, hobbies=[]):
+    """match_people
+
+    Parameters
+    ----------
+    base_dados_pessoas : list
+    name: string
+    min_age: int
+    max_age: int
+    city: string
+    hobbies: list
+
+    Returns
+    -------
+    tinder_list: list
+
+    """
+    tinder_list = list()
+
+    if min_age > max_age:
+        raise ValueError("Ô querido, vamos estar sendo coerentes? Menor idade é a menor das contas inferiores do conjunto de idade, portanto, é menor do a máxima idade, que é a maior das cotas superiores")
+
+    for pessoa in base_dados_pessoas:
+        if (pessoa["age"] < max_age and pessoa["age"] > min_age) or (bool(min_age) == False and pessoa["age"] < max_age) or (bool(max_age) == False and pessoa["age"] > min_age) or (bool(max_age) == False and bool(min_age) == False):
+            if (pessoa["name"] == name) or (bool(name) == False):
+                if (pessoa["city"] == city) or (bool(city) == False):
+                    if set(hobbies).issubset(set(pessoa["hobbies"])):
+                        tinder_list.append(pessoa["name"])
+    
+    return tinder_list
