@@ -36,3 +36,7 @@ print("\n", use.get_ages(data.people_data))
 print("\n\nQuestão 4: ")
 
 print("\n", use.get_hobbies(data.people_data))
+
+print("\n\nQuestão 5: ")
+
+print("\n", use.get_people_by_hobbies(data.people_data, {"ler", "cooking", "matemática"}))

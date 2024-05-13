@@ -117,19 +117,57 @@ def get_hobbies(base_dados_pessoas):
 
     Parameters
     ----------
-    base_dados_pessoas : TYPE
-        DESCRIPTION.
+    base_dados_pessoas : list
 
     Returns
     -------
-    None.
+    hobbies_conjunto : set.
 
     """ 
-    hobbies_conjunto = {}
+    hobbies_conjunto = set()
     
     for pessoa in base_dados_pessoas:
         for chave in pessoa.keys():
             if chave == "hobbies":
-                hobbies_conjunto.append(pessoa["hobbies"])
+                
+                str_hobbies = ', '.join(str(hobby) for hobby in pessoa["hobbies"])
+                
+                hobbies_conjunto.add(str_hobbies)
                 
     return hobbies_conjunto
+
+def get_people_by_hobbies(base_dados_pessoas, hobbies):
+    """get_people_by_hobbies
+    
+
+    Parameters
+    ----------
+    base_dados_pessoas : list
+        
+    hobbies : string
+        
+
+    Returns
+    -------
+    ordered_list_people_by_hobbies : list
+
+    """
+    list_people_by_hobbies = list()
+    
+    def get_age(nome):
+        for pessoa in base_dados_pessoas:
+            if pessoa["name"] == nome:
+                age = pessoa["age"]
+                
+        return age 
+    
+    for hobby in hobbies:
+        for pessoa in base_dados_pessoas:
+            for hobby_from_list in pessoa["hobbies"]:
+                if hobby == hobby_from_list and pessoa["name"] != (name for name in list_people_by_hobbies):
+                    list_people_by_hobbies.append(pessoa["name"])
+                    list_people_by_hobbies.sort(key=get_age)
+                    
+    return list_people_by_hobbies
+                    
+    
