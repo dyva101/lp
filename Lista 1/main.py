@@ -39,4 +39,12 @@ print("\n", use.get_hobbies(data.people_data))
 
 print("\n\nQuestão 5: ")
 
+print("\n", use.get_people_by_hobbies(data.people_data, ["ler", "rir"]))
+
+print("\n\nQuestão 6: ")
+
+print("\n", use.tinder(base_dados_pessoas=data.people_data, name="Isabelli", min_age=33, max_age=32, hobbies=["ler", "cantar no coral", "matemática"]))
+
+print("\n\nQuestão 5: ")
+
 print("\n", use.get_people_by_hobbies(data.people_data, {"ler", "cooking", "matemática"}))
